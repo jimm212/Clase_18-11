@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
         # Crear grupo de usuarios
         grupo_permisos = {'Editor1':['add_oferta', 'view_oferta','change_oferta'],
-                        'Usuario_comun':['view_oferta']}
+                        'Usuario_comun':['view_oferta'],}
         for grupo_nombre, permisos in grupo_permisos.items():
             grupo, creado = Group.objects.get_or_create(name=grupo_nombre)
             
@@ -36,6 +36,7 @@ class Command(BaseCommand):
         
         admin_user.groups.add(Group.objects.get(name='Editor1'))
         admin_user.is_staff = True
-        admin_user.is_active = True
+        admin_user.is_superuser = True
+        # admin_user.is_active = True
         admin_user.save()
         self.stdout.write(self.style.SUCCESS('Configuración inicial completada con éxito'))

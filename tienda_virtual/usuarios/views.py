@@ -17,7 +17,7 @@ def registro(request):
             # Asignación el grupo comun al nuevo usuario
             grupo_usuario_comun = Group.objects.get(name= 'Usuario_comun')
             user.groups.add(grupo_usuario_comun)
-            return redirect('login')
+            return redirect('usuarios:login')
     else:
         form = RegistroForm()
     return render(request, 'usuarios/registro.html', {'form': form})
