@@ -1,5 +1,5 @@
 from django.db import models
-from tienda_virtual.productos.models import Productos
+from productos.models import Productos
 
 # Create your models here.
 class Cliente(models.Model):
@@ -16,7 +16,7 @@ class Orden(models.Model):
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    fecha_orden = models.DateTimeField()
+    fecha_orden = models.DateTimeField(auto_now=True)
     
     def save(self, *args, **kwargs):
         self.precio_unitario = self.producto.precio

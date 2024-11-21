@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} ELIMINAR ORDEN {% endblock %}
+
+{% block content %} 
+   <h2>¿Esta seguro de eliminar la orden {{orden.nombre}}?</h2>
+
+   <form  method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn bg-danger">ELIMINAR!</button>
+   </form>
+
+   <a href="{% url  'ordenes:ver_ordenes' %}" class="btn bg-warning">Cancelar</a>
+
+{% endblock %}

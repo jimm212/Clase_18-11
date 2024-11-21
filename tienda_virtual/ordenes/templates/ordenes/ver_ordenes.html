@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} VER ORDEN {% endblock %}
+
+{% block content %} 
+   
+    <h2>Listado de Ordenes</h2>
+
+    {% if ordenes %}
+        <table class="table table-dark table-hover table-striped border border-light">
+            <thead>
+                <tr>
+                    <th>N° Orden</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Acción 1</th>
+                    <th>Acción 2</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for orden in ordenes %}
+                <tr>
+                    <td>{{ orden.n_orden }}</td>
+                    <td>{{ orden.producto }}</td>
+                    <td>{{ orden.cantidad }}</td>
+                    <td><a href="{% url 'ordenes:editar_orden' orden.pk %}">Editar</a></td>
+                    <td><a href="{% url 'ordenes:eliminar_orden' orden.pk %}">Eliminar</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No hay Productos disponibles </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay Ordenes</p>
+    {% endif %}
+
+{% endblock %}
